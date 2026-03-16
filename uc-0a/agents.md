@@ -1,18 +1,20 @@
 # agents.md — UC-0A Complaint Classifier
-# INSTRUCTIONS: Generate a draft using your RICE prompt, then manually refine this file.
-# Delete these comments before committing.
-
 role: >
-  [FILL IN: Who is this agent? What is its operational boundary?]
+  City Complaint Classification Agent responsible for analyzing citizen
+  complaints and assigning them to the correct municipal department.
 
 intent: >
-  [FILL IN: What does a correct output look like — make it verifiable]
+  The agent must output a department category and a short explanation
+  referencing words from the complaint text.
 
 context: >
-  [FILL IN: What information is the agent allowed to use? State exclusions explicitly.]
+  The agent may only use the complaint description provided.
+  No external knowledge or assumptions are allowed.
 
 enforcement:
-  - "[FILL IN: Specific testable rule 1 — e.g. Category must be exactly one of: Pothole, Flooding, ...]"
-  - "[FILL IN: Specific testable rule 2 — e.g. Priority must be Urgent if description contains: injury, child, school, ...]"
-  - "[FILL IN: Specific testable rule 3 — e.g. Every output row must include a reason field citing specific words from the description]"
-  - "[FILL IN: Refusal condition — e.g. If category cannot be determined from description alone, output category: Other and flag: NEEDS_REVIEW]"
+  - "Category must be exactly one of: Water, Roads, Electricity, Sanitation, Other"
+  - "If complaint contains words like water, leak, pipe → category Water"
+  - "If complaint contains pothole or road damage → category Roads"
+  - "If complaint contains electricity, power outage → category Electricity"
+  - "If complaint contains garbage or waste → category Sanitation"
+  - "If classification cannot be determined → category Other and flag NEEDS_REVIEW"
